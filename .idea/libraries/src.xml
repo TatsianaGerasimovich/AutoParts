@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="src">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../bdunit/dbunit-2.4.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../bdunit/junit-4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../bdunit/slf4j.api-1.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../connector/mysql-connector-java-5.1.34.zip!/mysql-connector-java-5.1.34/src" />
+    </SOURCES>
+  </library>
+</component>

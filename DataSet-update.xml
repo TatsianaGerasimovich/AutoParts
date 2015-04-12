@@ -1,0 +1,15 @@
+<dataset>
+    <carbrands CarBrandId="1" NameBrand="Mazda"/>
+    <carbrands CarBrandId="2" NameBrand="Opel"/>
+    <carbrands CarBrandId="3" NameBrand="Saab"/>
+
+
+    <carmodels CarModelId="1" CarBrandId="1" NameModel="Yaris" setYearOfRelease="1995"/>
+    <carbrands CarModelId="2" CarBrandId="2" NameModel="Agila" setYearOfRelease="2001"/>
+    <carbrands CarModelId="3" CarBrandId="3" NameModel="Kaget" setYearOfRelease="1989"/>
+
+
+    <contractors autoParts_autoPartId="1" NameOfAgent="AtlantM" Address="Minck, Orlova 9" Phone="2478521" TypeOfAgent="Provider" Rating="8"/>
+    <contractors autoParts_autoPartId="2" NameOfAgent="Motexc" Address="Minck, Lebedu 46" Phone="2514587" TypeOfAgent="Provider" Rating="9"/>
+
+</dataset>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="MySQL - @localhost" uuid="defb1026-2919-4e0d-bf59-eba3adcc2ba5">
+    <database-info product="MySQL" version="5.5.41" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.26 ( Revision: ${bzr.revision-id} )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="autoparts"/>
+    <table name="autoparts" schema="" catalog="autoparts" type="TABLE">
+      <column name="AutoPartId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="AutoPartId"/>
+      <exported-key name="fk_AutoParts_has_CarModels_AutoParts1" table="autoparts_has_carmodels" schema="" catalog="autoparts" columns="AutoPartId"/>
+      <exported-key name="fk_Documents_has_AutoParts_AutoParts1" table="documents_has_autoparts" schema="" catalog="autoparts" columns="AutoParts_AutoPartId"/>
+    </table>
+    <table name="autoparts_has_carmodels" schema="" catalog="autoparts" type="TABLE">
+      <column name="AutoPartId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CarModelId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CarBrandId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="AutoPartId,CarModelId,CarBrandId"/>
+      <foreign-key name="fk_AutoParts_has_CarModels_AutoParts1" columns="AutoPartId" ref-table="autoparts" ref-schema="" ref-catalog="autoparts" ref-columns="AutoPartId" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="fk_AutoParts_has_CarModels_CarModels1" columns="CarModelId,CarBrandId" ref-table="carmodels" ref-schema="" ref-catalog="autoparts" ref-columns="CarModelId,CarBrandId" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_AutoParts_has_CarModels_AutoParts1_idx" unique="false" columns="AutoPartId"/>
+      <index name="fk_AutoParts_has_CarModels_CarModels1_idx" unique="false" columns="CarModelId,CarBrandId"/>
+    </table>
+    <table name="carbrands" schema="" catalog="autoparts" type="TABLE">
+      <column name="CarBrandId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="NameBrand" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="CarBrandId"/>
+      <exported-key name="fk_Produced" table="carmodels" schema="" catalog="autoparts" columns="CarBrandId"/>
+    </table>
+    <table name="carmodels" schema="" catalog="autoparts" type="TABLE">
+      <column name="CarModelId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="CarBrandId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="NameModel" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="YearOfRelease" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="CarModelId,CarBrandId"/>
+      <foreign-key name="fk_Produced" columns="CarBrandId" ref-table="carbrands" ref-schema="" ref-catalog="autoparts" ref-columns="CarBrandId" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="fk_AutoParts_has_CarModels_CarModels1" table="autoparts_has_carmodels" schema="" catalog="autoparts" columns="CarModelId,CarBrandId"/>
+      <index name="fk_Produced_idx" unique="false" columns="CarBrandId"/>
+    </table>
+    <table name="contractors" schema="" catalog="autoparts" type="TABLE">
+      <column name="AgentId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="NameOfAgent" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Address" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Phone" sqlType="MEDIUMTEXT" precision="16777215" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="TypeOfAgent" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Rating" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="AgentId"/>
+      <exported-key name="fk_Indicated" table="documents" schema="" catalog="autoparts" columns="AgentId"/>
+    </table>
+    <table name="documents" schema="" catalog="autoparts" type="TABLE">
+      <column name="DocumentId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="DocumentType" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="AgentId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="DocumentId"/>
+      <foreign-key name="fk_Indicated" columns="AgentId" ref-table="contractors" ref-schema="" ref-catalog="autoparts" ref-columns="AgentId" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="fk_Documents_has_AutoParts_Documents" table="documents_has_autoparts" schema="" catalog="autoparts" columns="Documents_DocumentId"/>
+      <index name="fk_Indicated_idx" unique="false" columns="AgentId"/>
+    </table>
+    <table name="documents_has_autoparts" schema="" catalog="autoparts" type="TABLE">
+      <column name="Documents_DocumentId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="AutoParts_AutoPartId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Price" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Number" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Currency" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="Documents_DocumentId,AutoParts_AutoPartId"/>
+      <foreign-key name="fk_Documents_has_AutoParts_Documents" columns="Documents_DocumentId" ref-table="documents" ref-schema="" ref-catalog="autoparts" ref-columns="DocumentId" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="fk_Documents_has_AutoParts_AutoParts1" columns="AutoParts_AutoPartId" ref-table="autoparts" ref-schema="" ref-catalog="autoparts" ref-columns="AutoPartId" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_Documents_has_AutoParts_AutoParts1_idx" unique="false" columns="AutoParts_AutoPartId"/>
+      <index name="fk_Documents_has_AutoParts_Documents_idx" unique="false" columns="Documents_DocumentId"/>
+    </table>
+  </data-source>
+</component>

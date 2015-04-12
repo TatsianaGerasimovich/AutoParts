@@ -1,0 +1,10 @@
+<dataset>
+    <carbrands CarBrandId="1" NameBrand="Mazda"/>
+    <carbrands CarBrandId="2" NameBrand="Opel"/>
+
+    <carbrands CarModelId="2" CarBrandId="2" NameModel="Astra" setYearOfRelease="2001"/>
+    <carbrands CarModelId="3" CarBrandId="3" NameModel="Kaget" setYearOfRelease="1989"/>
+
+    <contractors autoParts_autoPartId="2" NameOfAgent="Motexc" Address="Minck, Semenova 46" Phone="2514587" TypeOfAgent="Provider" Rating="9"/>
+
+</dataset>
